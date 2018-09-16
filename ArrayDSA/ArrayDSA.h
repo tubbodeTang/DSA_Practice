@@ -13,11 +13,14 @@ private:
 
 protected:
 	void extend(); //扩容
-	void copy();
+	void copy();//复制
 	void bubbleSort(Rank lo, Rank hi);
-	//void selectionSort(Rank lo, Rank hi);
-	//void mergeSort(Rank lo, Rank hi);
+	void selectionSort(Rank lo, Rank hi);
+	void mergeSort(Rank lo, Rank hi);
 	void switchItem(Rank a, Rank b);
+	void merge(Rank lo, Rank mi, Rank hi);
+
+	Rank binarySearch(T target, Rank lo, Rank hi);
 public:
 
 	ArrayDSA(); // constructor
@@ -45,11 +48,13 @@ public:
 
 	bool isEmpty();//判断是否为空
 
+	bool isOrdered(); //判断是否有序
+
 	Rank findRank(T target , Rank lo,Rank hi ); //无序查找找元素位置区间
 	Rank findRank(T target); //无序查找找元素位置整体
 
-	//Rank search(); //有序向量查找整体
-	//Rank search(); // 有序向量查找区间
+	Rank search(T target , Rank lo ,Rank hi); //有序向量查找区间
+	Rank search(T target); // 有序向量查找整体
 
 	////可写访问接口
 
@@ -73,11 +78,14 @@ public:
 	//置乱
 
 	//有序去重
+	int uniquify();
 
 	//无序去重
 	int deduplicated();
-	//遍历
 
+	//遍历  直接复制过来的，先看懂再说
+	void traverse(void(*) (T&)); //遍历（使用函数指针，只读或局部性修改）
+	template <typename VST> void traverse(VST&); //遍历（使用函数对象，可全局性修改）
 
 	////运算符重载
 

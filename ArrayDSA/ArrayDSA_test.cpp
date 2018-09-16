@@ -11,6 +11,16 @@ int Random(){
 	return rand() % 100;//返回0-100的随机数
 }
 
+template<class T> struct Increase{
+	virtual void operator()(T &e){
+		e++;
+	}
+};
+
+template<class T> void increase(ArrayDSA<T> & arrayDSA){
+	arrayDSA.traverse(Increase<T>());
+}
+
 int main()
 {
 	srand((int)time(NULL));
@@ -95,6 +105,58 @@ int main()
 	//测试排序
 	c.sort();
 	cout << "Vector after sort is:" << endl;
+	cout << "[";
+	for (int i = 0; i < c.size(); i++)
+	{
+		cout << c[i] << " ";
+	}
+	cout << "]" << endl;
+
+
+
+
+	//测试有序去重
+	c.insertItem(5, 111);
+	c.insertItem(7, 111);
+	cout << "Vector before uniquify is:" << endl;
+	cout << "[";
+	for (int i = 0; i < c.size(); i++)
+	{
+		cout << c[i] << " ";
+	}
+	cout << "]" << endl;
+
+
+	//排序
+	c.sort();
+	cout << "Vector after sort is:" << endl;
+	cout << "[";
+	for (int i = 0; i < c.size(); i++)
+	{
+		cout << c[i] << " ";
+	}
+	cout << "]" << endl;
+
+
+	//顺便测试一下有序查找(应该返回同值中最大的秩)
+	cout << "Rank of target " << 111 << " is:" << c.search(111) << endl;
+
+
+
+	c.uniquify();
+	cout << "Vector after uniquify is:" << endl;
+	cout << "[";
+	for (int i = 0; i < c.size(); i++)
+	{
+		cout << c[i] << " ";
+	}
+	cout << "]" << endl;
+
+
+
+	//测试遍历
+	increase(c);
+	cout << "Vector after double traverse is:" << endl;
 	cout << "[";
 	for (int i = 0; i < c.size(); i++)
 	{
